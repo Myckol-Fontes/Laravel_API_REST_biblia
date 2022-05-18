@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestamentoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/teste', function(){
-    return "Teste com sucesso";
-});
+Route::post('/testamento', [TestamentoController::class, 'store']);
+Route::get('/testamento', [TestamentoController::class, 'index']);
+Route::get('/testamento/{id}', [TestamentoController::class, 'show']);
+Route::put('/testamento/{id}', [TestamentoController::class, 'update']);
+Route::delete('/testamento/{id}', [TestamentoController::class, 'destroy']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
