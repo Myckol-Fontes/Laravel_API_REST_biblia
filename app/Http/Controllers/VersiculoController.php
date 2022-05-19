@@ -25,44 +25,74 @@ class VersiculoController extends Controller
      */
     public function store(Request $request)
     {
-        return Versiculo::create($request->all());
+        if(Versiculo::create($request->all())){
+            return response()->json([
+                'message' => 'Versiculo cadastrado com sucesso'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Erro ao cadastrar Versiculo'
+        ], 404);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $versiculo
      * @return \Illuminate\Http\Response
      */
     public function show($versiculo)
     {
-        return Versiculo::findOrFail($versiculo);
+        $versiculo = Versiculo::find($versiculo);
+
+        if($versiculo){
+            return $versiculo;
+        }
+
+        return response()->json([
+            'message' => 'Erro ao pesquisar Versiculo'
+        ], 404);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int  $versiculo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $versiculo)
     {
-        $versiculo = Versiculo::findOrFail($id);
+        $versiculo = Versiculo::find($versiculo);
 
-        $versiculo->update($request->all());
+        if($versiculo){
+            $versiculo->update($request->all());
 
-        return $versiculo;
+            return $versiculo;
+        }
+
+        return response()->json([
+            'message' => 'Erro ao atualizar Versiculo'
+        ], 404);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int  $versiculo
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($versiculo)
     {
-        return Versiculo::destroy($id);
+        if(Versiculo::destroy($versiculo)){
+            return response()->json([
+                'message' => 'Versiculo deletado com sucesso'
+            ], 201);
+        }
+
+        return response()->json([
+            'message' => 'Erro ao deletar Versiculo'
+        ], 404);
     }
 }
