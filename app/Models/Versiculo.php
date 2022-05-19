@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Versiculoo extends Model
+class Versiculo extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['capitulo', 'versiculo', 'texto', 'livro_id'];
 }
