@@ -19,4 +19,12 @@ class Livro extends Model
          return $this->belongsTo(Testamento::class);
      }
 
+      /**
+     * Pegar todos os versículos vinculados
+     */
+
+    public function versiculos(){
+        return $this->hasMany(Versiculo::class);
+    }
+
 }
