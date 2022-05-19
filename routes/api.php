@@ -40,15 +40,19 @@ use App\Http\Controllers\AuthController;
 // Route::apiResource('livro', LivroController::class);
 // Route::apiResource('versiculo', VersiculoController::class);
 
-Route::apiResources([
-    'testamento' => TestamentoController::class,
-    'livro' => LivroController::class,
-    'versiculo' => VersiculoController::class,
-]);
+Route::group(['middleware' => ['auth:sanctum']], function () {
+
+    Route::apiResources([
+        'testamento' => TestamentoController::class,
+        'livro' => LivroController::class,
+        'versiculo' => VersiculoController::class,
+    ]);
+
+});
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
