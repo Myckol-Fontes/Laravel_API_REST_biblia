@@ -49,6 +49,7 @@ class LivroController extends Controller
         if($livro){
            $livro->testamento;
            $livro->versiculos;
+           $livro->versao;
 
             return $livro;
         }

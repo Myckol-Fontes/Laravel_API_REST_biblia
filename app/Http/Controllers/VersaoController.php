@@ -49,7 +49,7 @@ class VersaoController extends Controller
         $versao = Versao::find($versao);
 
         if($versao){
-
+            $versao->idioma;
             return $versao;
         }
 

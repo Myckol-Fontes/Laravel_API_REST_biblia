@@ -10,4 +10,12 @@ class Idioma extends Model
     use HasFactory;
 
     protected $fillable = ['nome'];
+
+    /**
+     * Pega todas as versẽos
+     */
+
+    public function versao(){
+        return $this->hasMany(Versao::class);
+    }
 }

@@ -9,7 +9,7 @@ class Livro extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nome', 'posicao', 'abreviacao', 'testamento_id'];
+    protected $fillable = ['nome', 'posicao', 'abreviacao', 'testamento_id', 'versao_id'];
 
     /**
      * Pega o testamento
@@ -25,6 +25,14 @@ class Livro extends Model
 
     public function versiculos(){
         return $this->hasMany(Versiculo::class);
+    }
+
+    /**
+     * Pega a versão
+     */
+
+    public function versao(){
+        return $this->belongsTo(Versao::class);
     }
 
 }

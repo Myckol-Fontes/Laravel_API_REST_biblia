@@ -12,4 +12,21 @@ class Versao extends Model
     protected $table = 'versoes';
 
     protected $fillable = ['nome', 'abreviacao', 'idioma_id'];
+
+    /**
+     * Pega o Idioma
+     */
+
+     public function idioma(){
+         return $this->belongsTo(Idioma::class);
+     }
+
+     /**
+      * Pega o Livro
+      */
+
+      public function livros(){
+          return $this->hasMany(Livro::class);
+      }
 }
+
