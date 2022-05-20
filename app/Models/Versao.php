@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Versao extends Model
 {
     use HasFactory;
+
+    protected $table = 'versoes';
 }

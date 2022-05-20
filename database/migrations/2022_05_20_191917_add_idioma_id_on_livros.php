@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('versoes', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome');
-            $table->string('abreviacao');
-            $table->unsignedBigInteger('idioma_id');
-            $table->timestamps();
+        Schema::table('livros', function (Blueprint $table) {
+            $table->unsignedBigInteger('versao_id')->nullable();
 
-            $table->foreign('idioma_id')->references('id')->on('idiomas');
+            $table->foreign('versao_id')->references('id')->on('versoes');
         });
     }
 
@@ -31,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('versoes');
+        Schema::table('livros', function (Blueprint $table) {
+            $table->dropColumm('versao_id');
+        });
     }
 };
