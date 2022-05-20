@@ -10,4 +10,6 @@ class Versao extends Model
     use HasFactory;
 
     protected $table = 'versoes';
+
+    protected $fillable = ['nome', 'abreviacao', 'idioma_id'];
 }
